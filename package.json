@@ -1,0 +1,32 @@
+{
+  "name": "image-carousel-slider",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palmerusaf/image-carousel-slider.git"
+  },
+  "keywords": [],
+  "author": "branden palmer <brandenpalmer08@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/palmerusaf/image-carousel-slider/issues"
+  },
+  "homepage": "https://github.com/palmerusaf/image-carousel-slider#readme",
+  "devDependencies": {
+  "css-loader": "^6.5.1",
+  "eslint": "^8.6.0",
+  "eslint-config-prettier": "^8.3.0",
+  "html-webpack-plugin": "^5.5.0",
+  "prettier": "^2.5.1",
+  "sass": "^1.45.2",
+  "sass-loader": "^12.4.0",
+  "style-loader": "^3.3.1",
+  "webpack": "^5.65.0",
+  "webpack-cli": "^4.9.1"
+  }
+}
