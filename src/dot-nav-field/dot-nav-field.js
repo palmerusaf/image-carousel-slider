@@ -19,7 +19,7 @@ function _makeDot(index) {
   dot.classList = "dot-field__dot";
   dot.dataset.index = index;
   dot.addEventListener("click", (clickEvent) =>
-    pubsub.publish("dotClicked", clickEvent.target.dataset.index)
+    pubsub.publish("changeActiveIndex", clickEvent.target.dataset.index)
   );
   return dot;
 }
@@ -33,4 +33,40 @@ function _setSelectedDotClassToActive(indexOfSelectedDot) {
     allDots.forEach((dot) => dot.classList.remove("dot-field__dot--active"));
   }
 }
-pubsub.subscribe('dotClicked',_setSelectedDotClassToActive)
+pubsub.subscribe("changeActiveIndex", _setSelectedDotClassToActive);
+
+function _getNumberOfDots() {
+  return document.getElementsByClassName("dot-field__dot").length;
+}
+
+function _getIndexOfActiveDot() {
+  return document.getElementsByClassName("dot-field__dot--active").dataset
+    .index;
+}
+
+function _cycleActiveStatusToNextDot() {
+  const activeDotIndex = _getIndexOfActiveDot();
+  const nextDotIndex = _getIndexOfActiveDot() + 1;
+  const lastDotIndex = _getNumberOfDots() - 1;
+  const firstDotIndex = 0;
+  if (activeDotIndex === lastDotIndex) {
+    _setSelectedDotClassToActive(firstDotIndex);
+  } else {
+    _setSelectedDotClassToActive(nextDotIndex);
+  }
+}
+setInterval(_cycleActiveStatusToNextDot, 5000);
+pubsub.subscribe("nextButtonPressed", _cycleActiveStatusToNextDot);
+
+function _cycleActiveStatusToPreviousDot() {
+  const activeDotIndex = _getIndexOfActiveDot();
+  const previousDotIndex = _getIndexOfActiveDot() - 1;
+  const lastDotIndex = _getNumberOfDots() - 1;
+  const firstDotIndex = 0;
+  if (activeDotIndex === firstDotIndex) {
+    pubsub.publish("changeActiveIndex", lastDotIndex);
+  } else {
+    pubsub.publish("changeActiveIndex", previousDotIndex);
+  }
+  pubsub.subscribe("previousButtonPressed", _cycleActiveStatusToPreviousDot);
+}
