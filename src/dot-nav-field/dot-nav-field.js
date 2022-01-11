@@ -23,3 +23,14 @@ function _makeDot(index) {
   );
   return dot;
 }
+
+function _setSelectedDotClassToActive(indexOfSelectedDot) {
+  const allDots = [...document.getElementsByClassName("dot-field__dot")];
+  _removeActiveClassFromAllDots(allDots);
+  allDots[indexOfSelectedDot].classList.add("dot-field__dot--active");
+
+  function _removeActiveClassFromAllDots(allDots) {
+    allDots.forEach((dot) => dot.classList.remove("dot-field__dot--active"));
+  }
+}
+pubsub.subscribe('dotClicked',_setSelectedDotClassToActive)
