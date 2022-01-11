@@ -5,3 +5,9 @@ export function makeDotNavField(numberOfDots) {
   }
   return container;
 }
+
+function _makeContainer() {
+  const container = document.createElement("div");
+  container.classList = "dot-field";
+  return container;
+}
