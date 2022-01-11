@@ -1,2 +1,1 @@
-console.log("test");
-document.body.textContent = "test";
+import "./dot-nav-field/dot-nav-field-tests";
