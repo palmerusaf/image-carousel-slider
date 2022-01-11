@@ -1,0 +1,20 @@
+{
+  "name": "image-carousel-slider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palmerusaf/image-carousel-slider.git"
+  },
+  "keywords": [],
+  "author": "branden palmer <brandenpalmer08@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/palmerusaf/image-carousel-slider/issues"
+  },
+  "homepage": "https://github.com/palmerusaf/image-carousel-slider#readme"
+}
