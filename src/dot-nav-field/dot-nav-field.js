@@ -1,4 +1,5 @@
 import { pubsub } from "../pubsub";
+import "./style.scss";
 
 export function makeDotNavField(numberOfDots) {
   const container = _makeContainer();
