@@ -16,7 +16,7 @@ function _makeContainer() {
 }
 
 function _makeDot(index) {
-  const dot = document.createElement("span");
+  const dot = document.createElement("button");
   dot.classList = "dot-field__dot";
   if (index === 0) dot.classList.add("dot-field__dot--active");
   dot.dataset.index = index;

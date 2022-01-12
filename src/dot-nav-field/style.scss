@@ -20,8 +20,7 @@ body {
   height: 80%;
   background-color: black;
 }
-.pictureField{
-
+.pictureField {
 }
 //delete after testing
 //delete after testing
@@ -34,11 +33,13 @@ body {
   &__dot {
     padding: 0.7rem;
     border-radius: 50%;
+    border: none;
+    cursor: pointer;
     background-color: hsl(0, 0%, 50%);
     &--active {
       background-color: white;
       transform: scale(1.4);
-      transition: 400ms;
+      transition: 200ms;
     }
   }
 }
