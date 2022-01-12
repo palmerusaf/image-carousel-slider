@@ -18,8 +18,9 @@ function _makeContainer() {
 function _makeDot(index) {
   const dot = document.createElement("button");
   dot.classList = "dot-field__dot";
-  if (index === 0) dot.classList.add("dot-field__dot--active");
+  dot.title = `Go to pic ${index + 1}`;
   dot.dataset.index = index;
+  if (index === 0) dot.classList.add("dot-field__dot--active");
   dot.addEventListener("click", (clickEvent) =>
     pubsub.publish("changeActiveIndex", clickEvent.target.dataset.index)
   );

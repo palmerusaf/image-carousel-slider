@@ -8,7 +8,7 @@ container.classList = "container";
 
 const pictureField = document.createElement("div");
 pictureField.classList = "pictureField";
-container.appendChild(makeDotNavField(4));
+container.appendChild(makeDotNavField(26));
 
 document.body.appendChild(container);
 
