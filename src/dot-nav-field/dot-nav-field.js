@@ -18,6 +18,7 @@ function _makeContainer() {
 function _makeDot(index) {
   const dot = document.createElement("span");
   dot.classList = "dot-field__dot";
+  if (index === 0) dot.classList.add("dot-field__dot--active");
   dot.dataset.index = index;
   dot.addEventListener("click", (clickEvent) =>
     pubsub.publish("changeActiveIndex", clickEvent.target.dataset.index)
@@ -41,28 +42,28 @@ function _getNumberOfDots() {
 }
 
 function _getIndexOfActiveDot() {
-  return document.getElementsByClassName("dot-field__dot--active").dataset
-    .index;
+  const activeDot = document.querySelector(".dot-field__dot--active");
+  return activeDot.dataset.index;
 }
 
 function _cycleActiveStatusToNextDot() {
-  const activeDotIndex = _getIndexOfActiveDot();
-  const nextDotIndex = _getIndexOfActiveDot() + 1;
-  const lastDotIndex = _getNumberOfDots() - 1;
+  const activeDotIndex = +_getIndexOfActiveDot();
+  const nextDotIndex = +_getIndexOfActiveDot() + 1;
+  const lastDotIndex = +_getNumberOfDots() - 1;
   const firstDotIndex = 0;
   if (activeDotIndex === lastDotIndex) {
-    _setSelectedDotClassToActive(firstDotIndex);
+    pubsub.publish("changeActiveIndex", firstDotIndex);
   } else {
-    _setSelectedDotClassToActive(nextDotIndex);
+    pubsub.publish("changeActiveIndex", nextDotIndex);
   }
 }
 setInterval(_cycleActiveStatusToNextDot, 5000);
 pubsub.subscribe("nextButtonPressed", _cycleActiveStatusToNextDot);
 
 function _cycleActiveStatusToPreviousDot() {
-  const activeDotIndex = _getIndexOfActiveDot();
-  const previousDotIndex = _getIndexOfActiveDot() - 1;
-  const lastDotIndex = _getNumberOfDots() - 1;
+  const activeDotIndex = +_getIndexOfActiveDot();
+  const previousDotIndex = +_getIndexOfActiveDot() - 1;
+  const lastDotIndex = +_getNumberOfDots() - 1;
   const firstDotIndex = 0;
   if (activeDotIndex === firstDotIndex) {
     pubsub.publish("changeActiveIndex", lastDotIndex);
