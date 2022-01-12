@@ -1,6 +1,44 @@
+//delete after testing
+//delete after testing
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+//delete after testing
+//delete after testing
+
+//delete after testing
+//delete after testing
+.container {
+  display: flex;
+  border: red solid 1px;
+  width: 80%;
+  height: 80%;
+  background-color: black;
+}
+.pictureField{
+
+}
+//delete after testing
+//delete after testing
+
 .dot-field {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
   &__dot {
+    padding: 0.7rem;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 50%);
     &--active {
+      background-color: white;
+      transform: scale(1.4);
+      transition: 400ms;
     }
   }
 }

@@ -1,9 +1,16 @@
 import { makeDotNavField } from "./dot-nav-field";
 import { pubsub } from "../pubsub";
-document.body.style.background = "black";
 
 pubsub.subscribe("changeActiveIndex", console.log);
-document.body.appendChild(makeDotNavField(4));
+
+const container = document.createElement("div");
+container.classList = "container";
+
+const pictureField = document.createElement("div");
+pictureField.classList = "pictureField";
+container.appendChild(makeDotNavField(4));
+
+document.body.appendChild(container);
 
 // Previous button press test
 const previousButton = document.createElement("button");
