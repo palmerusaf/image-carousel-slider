@@ -57,7 +57,7 @@ function _cycleActiveStatusToNextDot() {
     pubsub.publish("changeActiveIndex", nextDotIndex);
   }
 }
-// setInterval(_cycleActiveStatusToNextDot, 5000);
+setInterval(_cycleActiveStatusToNextDot, 5000);
 pubsub.subscribe("nextButtonPressed", _cycleActiveStatusToNextDot);
 
 function _cycleActiveStatusToPreviousDot() {

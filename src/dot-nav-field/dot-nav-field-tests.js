@@ -5,8 +5,6 @@ document.body.style.background = "black";
 pubsub.subscribe("changeActiveIndex", console.log);
 document.body.appendChild(makeDotNavField(4));
 
-pubsub.publish("changeActiveIndex", 2);
-
 // Previous button press test
 const previousButton = document.createElement("button");
 previousButton.textContent = "previous";
