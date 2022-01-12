@@ -58,7 +58,7 @@ function _cycleActiveStatusToNextDot() {
     pubsub.publish("changeActiveIndex", nextDotIndex);
   }
 }
-setInterval(_cycleActiveStatusToNextDot, 5000);
+let _cycleActiveStatusInterval = setInterval(_cycleActiveStatusToNextDot, 5000);
 pubsub.subscribe("nextButtonPressed", _cycleActiveStatusToNextDot);
 
 function _cycleActiveStatusToPreviousDot() {
@@ -73,3 +73,12 @@ function _cycleActiveStatusToPreviousDot() {
   }
 }
 pubsub.subscribe("previousButtonPressed", _cycleActiveStatusToPreviousDot);
+
+function _resetIntervalForCycleActiveStatusToNextDot() {
+  clearInterval(_cycleActiveStatusInterval);
+  _cycleActiveStatusInterval = setInterval(_cycleActiveStatusToNextDot, 5000);
+}
+pubsub.subscribe(
+  "changeActiveIndex",
+  _resetIntervalForCycleActiveStatusToNextDot
+);
