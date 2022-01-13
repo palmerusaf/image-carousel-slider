@@ -1,6 +1,6 @@
 import { pubsub } from "../pubsub";
 import "./style.scss";
-import arrow from "./forward-arrow.png";
+import arrow from "./forward-arrow.svg";
 
 export function makePictureWindow() {
   const container = document.createElement("div");
