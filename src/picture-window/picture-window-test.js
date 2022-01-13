@@ -2,5 +2,5 @@ import { makePictureWindow } from "./picture-window";
 import "../dot-nav-field/dot-nav-field-tests";
 
 // initial styling of arrow button
-const pictureField = document.querySelector(".pictureField");
-pictureField.appendChild(makePictureWindow());
+const container = document.querySelector(".container");
+container.prepend(makePictureWindow());
