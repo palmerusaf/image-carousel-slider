@@ -1,0 +1,23 @@
+.arrow-button {
+  display: flex;
+  height: 100%;
+  width: 6%;
+  border: none;
+  background-color: hsla(0, 0%, 100%, 0.3);
+  justify-content: center;
+  align-items: center;
+  &__arrow {
+    width: 100%;
+  }
+}
+
+@media (hover: hover) {
+  .arrow-button {
+    visibility: hidden;
+  }
+  //TO-DO change out container class for picture-view class
+  .container:hover .arrow-button {
+    visibility: visible;
+  }
+  //TO-DO change out container class for picture-view class
+}
