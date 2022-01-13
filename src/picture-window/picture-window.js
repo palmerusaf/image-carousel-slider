@@ -29,13 +29,10 @@ function _makeImageNavButtons() {
   return buttons;
 }
 
-export function _makeArrowButton() {
+function _makeArrowButton() {
   const button = document.createElement("button");
-  button.classList = "arrow-button";
   const arrowImg = document.createElement("img");
-  arrowImg.classList = "arrow-button__arrow";
   arrowImg.src = arrow;
   button.appendChild(arrowImg);
-
   return button;
 }
