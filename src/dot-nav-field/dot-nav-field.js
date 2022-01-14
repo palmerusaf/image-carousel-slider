@@ -47,7 +47,7 @@ function _getIndexOfActiveDot() {
   return activeDot.dataset.index;
 }
 
-function _cycleActiveStatusToNextDot() {
+function _cycleActiveIndexForward() {
   const activeDotIndex = +_getIndexOfActiveDot();
   const nextDotIndex = +_getIndexOfActiveDot() + 1;
   const lastDotIndex = +_getNumberOfDots() - 1;
@@ -58,10 +58,14 @@ function _cycleActiveStatusToNextDot() {
     pubsub.publish("changeActiveIndex", nextDotIndex);
   }
 }
-let _cycleActiveStatusInterval = setInterval(_cycleActiveStatusToNextDot, 5000);
-pubsub.subscribe("nextButtonPressed", _cycleActiveStatusToNextDot);
+const FIVE_SECONDS = 5000;
+let _cycleToNextIndexAtSetInterval = setInterval(
+  _cycleActiveIndexForward,
+  FIVE_SECONDS
+);
+pubsub.subscribe("nextButtonPressed", _cycleActiveIndexForward);
 
-function _cycleActiveStatusToPreviousDot() {
+function _cycleActiveIndexBackward() {
   const activeDotIndex = +_getIndexOfActiveDot();
   const previousDotIndex = +_getIndexOfActiveDot() - 1;
   const lastDotIndex = +_getNumberOfDots() - 1;
@@ -72,13 +76,13 @@ function _cycleActiveStatusToPreviousDot() {
     pubsub.publish("changeActiveIndex", previousDotIndex);
   }
 }
-pubsub.subscribe("previousButtonPressed", _cycleActiveStatusToPreviousDot);
+pubsub.subscribe("previousButtonPressed", _cycleActiveIndexBackward);
 
-function _resetIntervalForCycleActiveStatusToNextDot() {
-  clearInterval(_cycleActiveStatusInterval);
-  _cycleActiveStatusInterval = setInterval(_cycleActiveStatusToNextDot, 5000);
+function _resetIntervalForCycleNextIndex() {
+  clearInterval(_cycleToNextIndexAtSetInterval);
+  _cycleToNextIndexAtSetInterval = setInterval(
+    _cycleActiveIndexForward,
+    FIVE_SECONDS
+  );
 }
-pubsub.subscribe(
-  "changeActiveIndex",
-  _resetIntervalForCycleActiveStatusToNextDot
-);
+pubsub.subscribe("changeActiveIndex", _resetIntervalForCycleNextIndex);
