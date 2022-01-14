@@ -4,30 +4,31 @@ import arrow from "./forward-arrow.svg";
 
 export function makePictureWindow() {
   const container = document.createElement("div");
-  container.appendChild(_makeImageNavButtons());
+  container.appendChild(_makeNavOverlay());
   container.appendChild(_getPicturesFromDocument());
   container.classList = "picture-window";
   return container;
 }
 
-function _makeImageNavButtons() {
-  const buttons = document.createDocumentFragment();
+function _makeNavOverlay() {
+  const navOverlay = document.createElement("div");
+  navOverlay.classList = "nav-overlay";
 
   const previousButton = _makeArrowButton();
-  previousButton.classList = "picture-window__previous-button";
+  previousButton.classList = "nav-overlay__previous-button";
   previousButton.addEventListener("click", () =>
     pubsub.publish("previousButtonPressed")
   );
 
   const nextButton = _makeArrowButton();
-  nextButton.classList = "picture-window__next-button";
+  nextButton.classList = "nav-overlay__next-button";
   nextButton.addEventListener("click", () =>
     pubsub.publish("nextButtonPressed")
   );
 
-  buttons.appendChild(previousButton);
-  buttons.appendChild(nextButton);
-  return buttons;
+  navOverlay.appendChild(previousButton);
+  navOverlay.appendChild(nextButton);
+  return navOverlay;
 }
 
 function _makeArrowButton() {
