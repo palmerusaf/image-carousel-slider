@@ -1,1 +1,1 @@
-import "./dot-nav-field/dot-nav-field-tests";
+import "./picture-window/picture-window-test";
