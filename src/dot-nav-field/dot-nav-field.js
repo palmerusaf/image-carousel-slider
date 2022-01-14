@@ -1,8 +1,10 @@
 import { pubsub } from "../pubsub";
+import { IndexManager } from "../index-manager/index-manager";
 import "./style.scss";
 
 export function makeDotNavField(numberOfDots) {
   const container = _makeContainer();
+  IndexManager.initWithIndexSize(numberOfDots);
   for (let index = 0; index < numberOfDots; index++) {
     container.appendChild(_makeDot(index));
   }
