@@ -13,21 +13,16 @@ body {
 
 //delete after testing
 //delete after testing
+
+//TO-DO move to final container during integration
 .container {
   display: flex;
   flex-direction: column;
-  border: red solid 1px;
   width: 80%;
   height: 80%;
   background-color: black;
 }
-.pictureField {
-  width: 100%;
-  background-color: green;
-  height: 80%;
-}
-//delete after testing
-//delete after testing
+//TO-DO move to final container during integration
 
 * {
   box-sizing: border-box;
@@ -36,10 +31,10 @@ body {
 .dot-field {
   display: flex;
   justify-content: space-evenly;
-  padding: 0.6rem;
+  padding: 0.5em;
   width: 100%;
   &__dot {
-    padding: 0.5rem;
+    padding: 0.5em;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -49,6 +44,15 @@ body {
       background-color: white;
       transform: scale(1.4);
       transition: 200ms;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .dot-field {
+    padding: 0.8em;
+    &__dot {
+      padding: 0.74em;
     }
   }
 }
