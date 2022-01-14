@@ -5,6 +5,7 @@ import arrow from "./forward-arrow.svg";
 export function makePictureWindow() {
   const container = document.createElement("div");
   container.appendChild(_makeImageNavButtons());
+  container.appendChild(_getPicturesFromDocument());
   container.classList = "picture-window";
   return container;
 }
@@ -35,4 +36,12 @@ function _makeArrowButton() {
   arrowImg.src = arrow;
   button.appendChild(arrowImg);
   return button;
+}
+
+function _getPicturesFromDocument() {
+  const documentPictures = [...document.querySelectorAll(".slide-image")];
+  documentPictures.classList.add("picture-window__picture");
+  const groupedPictures = document.createDocumentFragment();
+  documentPictures.forEach((picture) => groupedPictures.appendChild(picture));
+  return groupedPictures;
 }
