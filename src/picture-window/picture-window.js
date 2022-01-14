@@ -40,8 +40,31 @@ function _makeArrowButton() {
 
 function _getPicturesFromDocument() {
   const documentPictures = [...document.querySelectorAll(".slide-image")];
-  documentPictures.classList.add("picture-window__picture");
+  _addAttributesToPictures();
   const groupedPictures = document.createDocumentFragment();
   documentPictures.forEach((picture) => groupedPictures.appendChild(picture));
   return groupedPictures;
+
+  function _addAttributesToPictures() {
+    documentPictures.forEach((picture, index) => {
+      picture.dataset.index = index;
+      if (index === 0) picture.classList.add("picture-window__picture--active");
+      picture.classList.add("picture-window__picture");
+    });
+  }
 }
+
+function _setSelectedImgClassToActive(indexOfSelectedImg) {
+  const allImgs = [
+    ...document.getElementsByClassName("picture-window__picture"),
+  ];
+  _removeActiveClassFromAllImgs(allImgs);
+  allImgs[indexOfSelectedImg].classList.add("picture-window__picture--active");
+
+  function _removeActiveClassFromAllImgs(allImgs) {
+    allImgs.forEach((img) =>
+      img.classList.remove("picture-window__picture--active")
+    );
+  }
+}
+pubsub.subscribe("changeActiveIndex", _setSelectedImgClassToActive);
