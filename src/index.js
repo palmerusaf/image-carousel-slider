@@ -1,1 +1,1 @@
-import "./picture-window/picture-window-test";
+import "./index-manager/index-manager-test";
