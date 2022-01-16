@@ -21,16 +21,22 @@ function _makeDot(index) {
   dot.title = `Go to pic ${index + 1}`;
   dot.dataset.index = index;
   if (index === 0) dot.classList.add("dot-field__dot--active");
-  dot.addEventListener("click", (clickEvent) =>
-    pubsub.publish("changeActiveIndex", clickEvent.target.dataset.index)
-  );
+  dot.addEventListener("click", publishDotIndex);
   return dot;
+
+  function publishDotIndex(clickEvent) {
+    const dotIndex = clickEvent.target.dataset.index;
+    pubsub.publish("changeActiveIndex", dotIndex);
+  }
 }
 
 function _setSelectedDotClassToActive(indexOfSelectedDot) {
   const allDots = [...document.getElementsByClassName("dot-field__dot")];
   _removeActiveClassFromAllDots(allDots);
-  allDots[indexOfSelectedDot].classList.add("dot-field__dot--active");
+  const selectedDot = allDots.find(
+    (dot) => dot.dataset.index == indexOfSelectedDot
+  );
+  selectedDot.classList.add("dot-field__dot--active");
 
   function _removeActiveClassFromAllDots(allDots) {
     allDots.forEach((dot) => dot.classList.remove("dot-field__dot--active"));
