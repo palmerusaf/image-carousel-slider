@@ -1,5 +1,5 @@
 import { pubsub } from "../pubsub";
-import "./style.scss";
+import "./picture-window-style.scss";
 import arrow from "./forward-arrow.svg";
 
 export function makePictureWindow(documentPictures) {
