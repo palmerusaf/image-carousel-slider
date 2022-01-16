@@ -1,15 +1,13 @@
 import { pubsub } from "../pubsub";
 
 export const IndexManager = (() => {
-  const FIVE_SECONDS = 5000;
   const firstIndex = 0;
   let indexes = undefined;
   let activeIndex = undefined;
   let lastIndex = undefined;
 
-  let _cycleToNextIndexAtSetInterval = setInterval(
-    _cycleActiveIndexForward,
-    FIVE_SECONDS
+  let _cycleIndexAtFiveSeconds = _executeEveryFiveSeconds(
+    _cycleActiveIndexForward
   );
 
   pubsub.subscribe("changeActiveIndex", _setActiveIndex);
@@ -19,43 +17,47 @@ export const IndexManager = (() => {
 
   function initWithIndexSize(numberOfIndexes) {
     if (!indexes) {
-      indexes = numberOfIndexes;
-      activeIndex = 0;
-      lastIndex = numberOfIndexes - 1;
+      indexes = Number(numberOfIndexes);
+      _setActiveIndex(0);
+      lastIndex = Number(numberOfIndexes) - 1;
       pubsub.publish("changeActiveIndex", activeIndex);
     } else console.error("Indexes already set in IndexManager module.");
   }
 
   function _setActiveIndex(index) {
-    activeIndex = index;
+    activeIndex = Number(index);
   }
 
   function _cycleActiveIndexForward() {
-    const nextIndex = activeIndex + 1;
+    const nextIndex = Number(activeIndex) + 1;
 
-    if (activeIndex === lastIndex) {
-      pubsub.publish("changeActiveIndex", firstIndex);
+    if (Number(activeIndex) === Number(lastIndex)) {
+      pubsub.publish("changeActiveIndex", Number(firstIndex));
     } else {
-      pubsub.publish("changeActiveIndex", nextIndex);
+      pubsub.publish("changeActiveIndex", Number(nextIndex));
     }
   }
 
   function _cycleActiveIndexBackward() {
-    const previousIndex = activeIndex - 1;
+    const previousIndex = Number(activeIndex) - 1;
 
-    if (activeIndex === firstIndex) {
-      pubsub.publish("changeActiveIndex", lastIndex);
+    if (Number(activeIndex) === Number(firstIndex)) {
+      pubsub.publish("changeActiveIndex", Number(lastIndex));
     } else {
-      pubsub.publish("changeActiveIndex", previousIndex);
+      pubsub.publish("changeActiveIndex", Number(previousIndex));
     }
   }
 
   function _resetIntervalForCycleNextIndex() {
-    clearInterval(_cycleToNextIndexAtSetInterval);
-    _cycleToNextIndexAtSetInterval = setInterval(
-      _cycleActiveIndexForward,
-      FIVE_SECONDS
+    clearInterval(_cycleIndexAtFiveSeconds);
+    _cycleIndexAtFiveSeconds = _executeEveryFiveSeconds(
+      _cycleActiveIndexForward
     );
+  }
+
+  function _executeEveryFiveSeconds(executable) {
+    const FIVE_SECONDS = 5000;
+    return setInterval(executable, FIVE_SECONDS);
   }
 
   return { initWithIndexSize };
