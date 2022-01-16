@@ -1,10 +1,8 @@
 import { pubsub } from "../pubsub";
-import { IndexManager } from "../index-manager/index-manager";
 import "./style.scss";
 
 export function makeDotNavField(numberOfDots) {
   const container = _makeContainer();
-  IndexManager.initWithIndexSize(numberOfDots);
   for (let index = 0; index < numberOfDots; index++) {
     container.appendChild(_makeDot(index));
   }
@@ -39,52 +37,3 @@ function _setSelectedDotClassToActive(indexOfSelectedDot) {
   }
 }
 pubsub.subscribe("changeActiveIndex", _setSelectedDotClassToActive);
-
-function _getNumberOfDots() {
-  return document.getElementsByClassName("dot-field__dot").length;
-}
-
-function _getIndexOfActiveDot() {
-  const activeDot = document.querySelector(".dot-field__dot--active");
-  return activeDot.dataset.index;
-}
-
-function _cycleActiveIndexForward() {
-  const activeDotIndex = +_getIndexOfActiveDot();
-  const nextDotIndex = +_getIndexOfActiveDot() + 1;
-  const lastDotIndex = +_getNumberOfDots() - 1;
-  const firstDotIndex = 0;
-  if (activeDotIndex === lastDotIndex) {
-    pubsub.publish("changeActiveIndex", firstDotIndex);
-  } else {
-    pubsub.publish("changeActiveIndex", nextDotIndex);
-  }
-}
-const FIVE_SECONDS = 5000;
-let _cycleToNextIndexAtSetInterval = setInterval(
-  _cycleActiveIndexForward,
-  FIVE_SECONDS
-);
-pubsub.subscribe("nextButtonPressed", _cycleActiveIndexForward);
-
-function _cycleActiveIndexBackward() {
-  const activeDotIndex = +_getIndexOfActiveDot();
-  const previousDotIndex = +_getIndexOfActiveDot() - 1;
-  const lastDotIndex = +_getNumberOfDots() - 1;
-  const firstDotIndex = 0;
-  if (activeDotIndex === firstDotIndex) {
-    pubsub.publish("changeActiveIndex", lastDotIndex);
-  } else {
-    pubsub.publish("changeActiveIndex", previousDotIndex);
-  }
-}
-pubsub.subscribe("previousButtonPressed", _cycleActiveIndexBackward);
-
-function _resetIntervalForCycleNextIndex() {
-  clearInterval(_cycleToNextIndexAtSetInterval);
-  _cycleToNextIndexAtSetInterval = setInterval(
-    _cycleActiveIndexForward,
-    FIVE_SECONDS
-  );
-}
-pubsub.subscribe("changeActiveIndex", _resetIntervalForCycleNextIndex);
