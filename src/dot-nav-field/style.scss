@@ -1,21 +1,6 @@
-//delete after testing
-//delete after testing
-body {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
-//delete after testing
-//delete after testing
-
-//delete after testing
-//delete after testing
-
 //TO-DO move to final container during integration
-.container {
+.image-slider {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -24,11 +9,8 @@ body {
 }
 //TO-DO move to final container during integration
 
-* {
-  box-sizing: border-box;
-}
-
 .dot-field {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-evenly;
   padding: 0.5em;

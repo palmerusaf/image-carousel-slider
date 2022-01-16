@@ -1,5 +1,5 @@
-
 .nav-overlay {
+  box-sizing: border-box;
   display: flex;
   height: 100%;
   width: 100%;
@@ -11,6 +11,7 @@
   }
   &__next-button,
   &__previous-button {
+    box-sizing: border-box;
     display: flex;
     min-width: 16px;
     height: 100%;
@@ -25,6 +26,7 @@
 }
 
 .picture-window {
+  box-sizing: border-box;
   display: flex;
   position: relative;
   height: 100%;

@@ -7,7 +7,7 @@ const documentPictures = document.querySelectorAll(".slide-image");
 const indexSize = documentPictures.length;
 const container = document.createElement("div");
 document.body.appendChild(container);
-container.classList = "container";
+container.classList = "image-slider";
 container.appendChild(makePictureWindow(documentPictures));
 container.appendChild(makeDotNavField(indexSize));
 IndexManager.initWithIndexSize(indexSize);
