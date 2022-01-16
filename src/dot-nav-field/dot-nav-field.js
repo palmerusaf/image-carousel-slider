@@ -1,5 +1,5 @@
 import { pubsub } from "../pubsub";
-import "./style.scss";
+import "./dot-nav-field-style.scss";
 
 export function makeDotNavField(numberOfDots) {
   const container = _makeContainer();
@@ -21,64 +21,25 @@ function _makeDot(index) {
   dot.title = `Go to pic ${index + 1}`;
   dot.dataset.index = index;
   if (index === 0) dot.classList.add("dot-field__dot--active");
-  dot.addEventListener("click", (clickEvent) =>
-    pubsub.publish("changeActiveIndex", clickEvent.target.dataset.index)
-  );
+  dot.addEventListener("click", publishDotIndex);
   return dot;
+
+  function publishDotIndex(clickEvent) {
+    const dotIndex = clickEvent.target.dataset.index;
+    pubsub.publish("changeActiveIndex", dotIndex);
+  }
 }
 
 function _setSelectedDotClassToActive(indexOfSelectedDot) {
   const allDots = [...document.getElementsByClassName("dot-field__dot")];
   _removeActiveClassFromAllDots(allDots);
-  allDots[indexOfSelectedDot].classList.add("dot-field__dot--active");
+  const selectedDot = allDots.find(
+    (dot) => dot.dataset.index == indexOfSelectedDot
+  );
+  selectedDot.classList.add("dot-field__dot--active");
 
   function _removeActiveClassFromAllDots(allDots) {
     allDots.forEach((dot) => dot.classList.remove("dot-field__dot--active"));
   }
 }
 pubsub.subscribe("changeActiveIndex", _setSelectedDotClassToActive);
-
-function _getNumberOfDots() {
-  return document.getElementsByClassName("dot-field__dot").length;
-}
-
-function _getIndexOfActiveDot() {
-  const activeDot = document.querySelector(".dot-field__dot--active");
-  return activeDot.dataset.index;
-}
-
-function _cycleActiveStatusToNextDot() {
-  const activeDotIndex = +_getIndexOfActiveDot();
-  const nextDotIndex = +_getIndexOfActiveDot() + 1;
-  const lastDotIndex = +_getNumberOfDots() - 1;
-  const firstDotIndex = 0;
-  if (activeDotIndex === lastDotIndex) {
-    pubsub.publish("changeActiveIndex", firstDotIndex);
-  } else {
-    pubsub.publish("changeActiveIndex", nextDotIndex);
-  }
-}
-let _cycleActiveStatusInterval = setInterval(_cycleActiveStatusToNextDot, 5000);
-pubsub.subscribe("nextButtonPressed", _cycleActiveStatusToNextDot);
-
-function _cycleActiveStatusToPreviousDot() {
-  const activeDotIndex = +_getIndexOfActiveDot();
-  const previousDotIndex = +_getIndexOfActiveDot() - 1;
-  const lastDotIndex = +_getNumberOfDots() - 1;
-  const firstDotIndex = 0;
-  if (activeDotIndex === firstDotIndex) {
-    pubsub.publish("changeActiveIndex", lastDotIndex);
-  } else {
-    pubsub.publish("changeActiveIndex", previousDotIndex);
-  }
-}
-pubsub.subscribe("previousButtonPressed", _cycleActiveStatusToPreviousDot);
-
-function _resetIntervalForCycleActiveStatusToNextDot() {
-  clearInterval(_cycleActiveStatusInterval);
-  _cycleActiveStatusInterval = setInterval(_cycleActiveStatusToNextDot, 5000);
-}
-pubsub.subscribe(
-  "changeActiveIndex",
-  _resetIntervalForCycleActiveStatusToNextDot
-);
