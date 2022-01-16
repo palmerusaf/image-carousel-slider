@@ -5,8 +5,8 @@ import { IndexManager } from "./index-manager";
 
 const indexSize = document.querySelectorAll(".slide-image").length;
 const container = document.createElement("div");
-container.classList = "container";
-container.appendChild(makeDotNavField(indexSize));
-container.appendChild(makePictureWindow());
-IndexManager.initWithIndexSize(indexSize);
 document.body.appendChild(container);
+container.classList = "container";
+container.appendChild(makePictureWindow());
+container.appendChild(makeDotNavField(indexSize));
+IndexManager.initWithIndexSize(indexSize);
