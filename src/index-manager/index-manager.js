@@ -5,10 +5,7 @@ export const IndexManager = (() => {
   let indexes = undefined;
   let activeIndex = undefined;
   let lastIndex = undefined;
-
-  let _cycleIndexAtFiveSeconds = _executeEveryFiveSeconds(
-    _cycleActiveIndexForward
-  );
+  let _cycleIndexAtFiveSeconds = undefined;
 
   pubsub.subscribe("changeActiveIndex", _setActiveIndex);
   pubsub.subscribe("changeActiveIndex", _resetIntervalForCycleNextIndex);
