@@ -10,8 +10,7 @@
     border: none;
     cursor: pointer;
     background-color: hsl(0, 0%, 50%);
-    &--active,
-    &:hover {
+    &--active {
       background-color: white;
       transform: scale(1.4);
       transition: 200ms;
@@ -24,6 +23,11 @@
     padding: 0.8em;
     &__dot {
       padding: 0.74em;
+      &:hover {
+        background-color: white;
+        transform: scale(1.4);
+        transition: 200ms;
+      }
     }
   }
 }
