@@ -27,3 +27,47 @@ This JS function will create an image gallery slider by taking images the user h
 <img src="./path/to/pic5.jpg" alt="" class="slide-image" />
   ```
 
+#### With NPM (preferred)
+
+- Enter the following into the command line:
+  `npm i image-carousel-slider`
+- There are three ways to use this module with NPM
+
+  1. Without a module bundler:
+     The steps are the same as without NPM except add the following script tag to the head of your html file:
+     `<script src='node_modules/image-carousel-slider/dist/main.js' defer>`
+
+  2. With bundler nodes already added to html document:
+     Simply add the following line to the import list of your index.js file:
+     `import 'image-carousel-slider'`
+  3. If adding the links programmatically add the following line after appending your links:
+     `makeImageSlider();`
+
+     Example:
+
+  ```
+  import {makeImageSlider} from "image-carousel-slider";
+
+  const imageSlider = document.createElement("div");
+  imageSlider.classList = "image-slider";
+  document.body.appendChild(imageSlider);
+
+  const img1 = document.createElement("img");
+  img1.classList = "slide-image";
+  img1.src = require("./path/to/pic1.jpg");
+
+  const img2 = document.createElement("img");
+  img2.classList = "slide-image";
+  img2.src = require("./path/to/pic2.jpg");
+
+  const img3 = document.createElement("img");
+  img3.classList = "slide-image";
+  img3.src = require("./path/to/pic3.jpg");
+
+  const img4 = document.createElement("img");
+  img4.classList = "slide-image";
+  img4.src = require("./path/to/pic4.jpg");
+
+  makeImageSlider();
+  ```
+
