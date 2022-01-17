@@ -19,12 +19,12 @@ This JS function will create an image gallery slider by taking images the user h
 - You will also need to create a container such as a div to container the image slider and add the class name `image-slider`.
 - Example:
   ```
-<div class="image-slider"></div>
-<img src="./path/to/pic1.jpg" alt="" class="slide-image" />
-<img src="./path/to/pic2.jpg" alt="" class="slide-image" />
-<img src="./path/to/pic3.jpg" alt="" class="slide-image" />
-<img src="./path/to/pic4.jpg" alt="" class="slide-image" />
-<img src="./path/to/pic5.jpg" alt="" class="slide-image" />
+  <div class="image-slider"></div>
+  <img src="./path/to/pic1.jpg" alt="" class="slide-image" />
+  <img src="./path/to/pic2.jpg" alt="" class="slide-image" />
+  <img src="./path/to/pic3.jpg" alt="" class="slide-image" />
+  <img src="./path/to/pic4.jpg" alt="" class="slide-image" />
+  <img src="./path/to/pic5.jpg" alt="" class="slide-image" />
   ```
 
 #### With NPM (preferred)
