@@ -72,9 +72,11 @@ This JS function will create an image gallery slider by taking images the user h
   ```
 
 ## How to Style
+
 To change the default sizing use class `image-slider`;
 
 Example:
+
 ```
 .image-slider{
     width: 80%
@@ -82,3 +84,10 @@ Example:
 }
 ```
 
+## Bugs and suggestions
+
+- Report bugs and suggestions [here](https://github.com/palmerusaf/image-carousel-slider/issues)
+
+## Motivations
+
+The motivations behind this project are to practice creating commonly used JS web functions using standard JS and practicing publishing node packages.
