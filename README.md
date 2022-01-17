@@ -79,8 +79,8 @@ Example:
 
 ```
 .image-slider{
-    width: 80%
-    height:80%
+    width: 80%;
+    height: 80%;
 }
 ```
 
