@@ -71,3 +71,14 @@ This JS function will create an image gallery slider by taking images the user h
   makeImageSlider();
   ```
 
+## How to Style
+To change the default sizing use class `image-slider`;
+
+Example:
+```
+.image-slider{
+    width: 80%
+    height:80%
+}
+```
+
