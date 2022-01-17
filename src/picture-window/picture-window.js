@@ -1,6 +1,5 @@
 import { pubsub } from "../pubsub";
 import "./picture-window-style.scss";
-import arrow from "./forward-arrow.svg";
 
 export function makePictureWindow(documentPictures) {
   const container = document.createElement("div");
@@ -25,10 +24,19 @@ function _makeArrowButton(direction) {
   button.addEventListener("click", () =>
     pubsub.publish(`${direction}ButtonPressed`)
   );
-  const arrowImg = document.createElement("img");
-  arrowImg.src = arrow;
-  button.appendChild(arrowImg);
+  const arrowIcon = document.createElement("span");
+  arrowIcon.classList = "material-icons";
+  arrowIcon.textContent = "arrow_forward_ios";
+  button.appendChild(arrowIcon);
+  _appendGoogleIconCSS();
   return button;
+
+  function _appendGoogleIconCSS() {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/icon?family=Material+Icons";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+  }
 }
 
 function _addAttributesToPictures(documentPictures) {
