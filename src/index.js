@@ -4,8 +4,17 @@ import { IndexManager } from "./index-manager/index-manager";
 import "./image-slider-style.scss";
 
 const documentPictures = document.querySelectorAll(".slide-image");
-const indexSize = documentPictures.length;
 const imageSlider = document.querySelector(".image-slider");
-imageSlider.appendChild(makePictureWindow(documentPictures));
-imageSlider.appendChild(makeDotNavField(indexSize));
-IndexManager.initWithIndexSize(indexSize);
+
+if (documentPictures && imageSlider)
+  makeImageSlider(documentPictures, imageSlider);
+
+export function makeImageSlider(pictures, container) {
+  const documentPictures =
+    pictures || document.querySelectorAll(".slide-image");
+  const indexSize = documentPictures.length;
+  const imageSlider = container || document.querySelector(".image-slider");
+  imageSlider.appendChild(makePictureWindow(documentPictures));
+  imageSlider.appendChild(makeDotNavField(indexSize));
+  IndexManager.initWithIndexSize(indexSize);
+}
