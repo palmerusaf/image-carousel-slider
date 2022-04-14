@@ -18,7 +18,7 @@ This JS function will create an image gallery slider by taking images the user h
 - Then for the images you want to have displayed in the image slider add the class name `slide-image`.
 - You will also need to create a container such as a div to container the image slider and add the class name `image-slider`.
 - Example:
-  ```
+  ```html
   <div class="image-slider"></div>
   <img src="./path/to/pic1.jpg" alt="" class="slide-image" />
   <img src="./path/to/pic2.jpg" alt="" class="slide-image" />
@@ -45,7 +45,7 @@ This JS function will create an image gallery slider by taking images the user h
 
      Example:
 
-  ```
+  ```javascript
   import {makeImageSlider} from "image-carousel-slider";
 
   const imageSlider = document.createElement("div");
@@ -77,7 +77,7 @@ To change the default sizing use class `image-slider`;
 
 Example:
 
-```
+```css
 .image-slider{
     width: 80%;
     height: 80%;
